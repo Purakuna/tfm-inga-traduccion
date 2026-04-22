@@ -513,7 +513,7 @@ Zhu, W., Liu, H., Dong, Q., Xu, J., Huang, S., Kong, L., Chen, J., & Li, L. (202
 
 # Anexo A. Código fuente y datos analizados
 
-El código fuente del presente TFM se aloja en el repositorio `https://github.com/wsantosai/tfm-inga-traduccion`, de acceso restringido durante la ejecución del proyecto, con el enlace comunicado al director del trabajo. La estructura del repositorio al cierre de la Entrega 1 se organiza según se describe a continuación.
+El código fuente del presente TFM se aloja en el repositorio `https://github.com/Purakuna/tfm-inga-traduccion` de la organización Purakuna, de acceso restringido durante la ejecución del proyecto, con el enlace comunicado al director del trabajo. La estructura del repositorio al cierre de la Entrega 1 se organiza según se describe a continuación.
 
 La carpeta `notebooks/` contiene los tres *notebooks* de Jupyter desarrollados:
 
