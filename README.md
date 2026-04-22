@@ -4,16 +4,14 @@ Trabajo Fin de Master del **Master Universitario en Inteligencia Artificial** de
 
 ## Resumen del proyecto
 
-Diseno e implementacion de un sistema comparativo de traduccion automatica para el par linguistico Inga-Espanol, como aporte a la preservacion digital de la lengua Inga del Putumayo. La lengua Inga es una variante quechua hablada por aproximadamente 18.000 personas en el suroccidente de Colombia y no cuenta con herramientas digitales de traduccion disponibles.
+La lengua Inga, variante quechua hablada por cerca de 18.000 personas en el Putumayo (Colombia), no cuenta con herramientas digitales de traduccion automatica. Este trabajo aborda esa brecha construyendo un sistema comparativo Inga-Espanol sobre dos aproximaciones complementarias:
 
-El sistema adopta dos aproximaciones complementarias:
-
-1. **Adaptacion de un modelo de traduccion multilingue preentrenado** mediante tecnicas de ajuste fino eficiente en parametros, aprovechando el conocimiento de lenguas quechuas emparentadas como base para la transferencia al par Inga-Espanol.
-2. **Pipeline basado en un modelo de lenguaje de frontera con recuperacion aumentada de informacion (RAG)**, apoyado en una base de conocimiento linguistica estructurada en tres indices independientes: lexico, gramatical y de ejemplos paralelos.
+1. **Adaptacion de un modelo de traduccion multilingue preentrenado** al par Inga-Espanol mediante ajuste fino eficiente en parametros, aprovechando las lenguas quechuas emparentadas que el modelo ya cubre como base de transferencia.
+2. **Pipeline basado en un modelo de lenguaje de frontera con recuperacion aumentada de informacion**, sustentado en una base de conocimiento linguistica estructurada en tres indices independientes: lexico, gramatical y de ejemplos paralelos.
 
 Ambas aproximaciones se evaluan comparativamente con metricas automaticas estandar (BLEU, chrF++, BERTScore) y validacion cualitativa con hablantes nativos.
 
-Como contribucion metodologica, el proyecto aporta cobertura bidialectal explicita de las dos variantes principales del Inga (Alto Putumayo y Medio Putumayo), aspecto no abordado en trabajos previos.
+La contribucion original del proyecto reside en la cobertura bidialectal, Alto y Medio Putumayo, y en la comparacion sistematica de ambas aproximaciones sobre el mismo par linguistico.
 
 ## Estructura del repositorio
 
