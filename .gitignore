@@ -1,0 +1,36 @@
+# macOS
+.DS_Store
+
+# Documentos personales con firmas (no publicar)
+Compromiso*.pdf
+Compromisos*.pdf
+
+# Memoria/configuracion local de herramientas asistenciales
+.claude/
+
+# LaTeX artefactos
+latex/*.aux
+latex/*.bcf
+latex/*.log
+latex/*.out
+latex/*.run.xml
+latex/*.toc
+latex/*.bbl
+latex/*.blg
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# Modelos descargados (se cachean en ~/.cache/huggingface)
+models/
+*.safetensors
+*.bin
+
+# Datos temporales
+*.tmp
+*.swp

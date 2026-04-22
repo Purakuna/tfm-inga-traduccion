@@ -1,0 +1,42 @@
+{
+  "recursos": {
+    "diccionario": {
+      "chars": 469272,
+      "words": 72212,
+      "lines": 19152,
+      "pages": 177
+    },
+    "gramatica_pedagogica": {
+      "chars": 326093,
+      "words": 54172,
+      "lines": 7434,
+      "pages": 228
+    },
+    "apendice_morfosintactico": {
+      "chars": 31344,
+      "words": 5130,
+      "lines": 951,
+      "pages": 26
+    },
+    "nuevo_testamento": {
+      "chars": 1474063,
+      "words": 178385,
+      "lines": 17759,
+      "pages": 595
+    },
+    "antihua_pacay": {
+      "chars": 65311,
+      "words": 9767,
+      "lines": 1302,
+      "pages": 68
+    }
+  },
+  "total_paginas_ocr": 1094,
+  "diccionario_entradas_detectadas": 817,
+  "nt_versiculos_aproximados": 2837,
+  "nt_versiculos_longitud_valida": 2791,
+  "nt_longitud_media_palabras_inga": 32.75,
+  "nt_segmentos_inga": 3093,
+  "antihua_pacay_parrafos_detectados": 284,
+  "antihua_pacay_pares_bloque_a_bloque": 4
+}
