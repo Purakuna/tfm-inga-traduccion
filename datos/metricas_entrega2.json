@@ -1,0 +1,22 @@
+{
+  "config_A_nllb_zeroshot_inga2es": {
+    "bleu": 2.0867,
+    "chrf": 19.9599,
+    "bertscore": 0.6998
+  },
+  "config_A_nllb_zeroshot_es2inga": {
+    "bleu": 0.2688,
+    "chrf": 16.9968,
+    "bertscore": 0.6781
+  },
+  "config_B_nllb_lora_inga2es": {
+    "bleu": 9.3176,
+    "chrf": 29.4258,
+    "bertscore": 0.7638
+  },
+  "config_B_nllb_lora_es2inga": {
+    "bleu": 1.4203,
+    "chrf": 24.5535,
+    "bertscore": 0.6767
+  }
+}
