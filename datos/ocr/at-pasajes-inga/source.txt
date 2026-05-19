@@ -1,0 +1,52 @@
+FUENTE: Pasajes Históricos del Antiguo Testamento en Inga de Colombia
+TRADUCTORES: Stephen H. Levinsohn y traductores Inga
+EDICION: 1ra edicion 1997, distribucion 2013 por Wycliffe Bible Translators Inc.
+DIALECTO: Inga del Valle de Sibundoy (Alto Putumayo) - CONSISTENTE con Diccionario Tandioy y Constitucion CCELA
+
+URLs ORIGINALES:
+- Catolica (con deuterocanonicos):    https://www.scriptureearth.org/data/inb/PDF/inbPOT-C-web.pdf
+- Mision Horizontes (sin deuterocanonicos): https://www.scriptureearth.org/data/inb/PDF/inbPOT-NTM-web.pdf
+
+Fecha descarga: 2026-05-18
+
+FORMATO: PDF generados desde Microsoft Word 2010 con texto extraible NATIVO (sin OCR necesario)
+
+TAMANO:
+- Catolica: 95 paginas, 6,058 lineas de texto
+- Mision Horizontes: 62 paginas, 3,904 lineas de texto
+
+LIBROS CUBIERTOS (Catolica, 27 libros del AT):
+- Pentateuco: Kallariikunamanda (Genesis), Ejiptomanda llugsiskamanda (Exodo), Levitico, Numeros, Deuteronomio
+- Historicos: Josue, Jueces, 1 y 2 Samuel, 1 y 2 Reyes, 1 y 2 Cronicas, 2 Macabeos (deuterocanonico)
+- Sapienciales: Salmos, Proverbios, Eclesiastes, Sabiduria (deuterocanonico), Eclesiastico/Sirach (deuterocanonico)
+- Profeticos: Isaias, Jeremias, Ezequiel, Oseas, Amos, Jonas, Habacuc, Sofonias, Zacarias, Malaquias
+
+NO COBERTURA (libros del canon catolico ausentes en esta edicion):
+- Ruth, Job, Cantares, Lamentaciones, Daniel, Joel, Abdias, Miqueas, Nahum, Hageo, Tobias, Judith, Baruc, 1 Macabeos
+
+LICENCIA: heredada de Wycliffe Bible Translators. Similar al NT del 2012 (CC BY-NC-ND 4.0 con atribucion, no comercial, no derivada). Texto del aviso original:
+
+  "Todos los derechos del texto inga quedan reservados por los traductores."
+  "Edicion 1ra, 1997 (Copias fueron entregadas a la Diocesis de Mocoa-Sibundoy
+   de La Iglesia Catolica Romana para utilizar con el Leccionario Dominical.)"
+  "Pasajes del Antiguo Testamento en Inga de Colombia, 1ra ed., 1997;
+   c 2013, Wycliffe Bible Translators, Inc."
+
+ESTRUCTURA INTERNA:
+- Cabeceras de libro: marcadas como "KALLARIIKUNAMANDA" (Genesis), "Ejiptomanda llugsiskamanda" (Exodo), etc. (en mayusculas + nombre castellano entre parentesis a veces)
+- Marcadores de versiculo: ASCII inline (mismo formato que el NT)
+- Subdivision por capitulo dentro de cada libro
+
+ALINEACION ESPERADA:
+- Alineacion canonica posible contra Reina-Valera 1909 del AT por (libro, capitulo, versiculo)
+- La RV1909 OT estaba en el bundle eBible que descargamos originalmente pero filtramos a solo NT en notebook 04
+- Hay que re-descargar los 39 archivos USFM del OT RV1909
+
+ESTIMACION DE PARES PARALELOS NUEVOS:
+- Edicion Catolica: 1,500-2,500 pares (varia segun la cobertura efectiva por libro)
+- Edicion Mision Horizontes: 800-1,500 pares (subset de la Catolica)
+- Si se usan ambas: hay solapamiento (~70%) por lo que no se duplica linealmente
+- Recomendacion practica: usar SOLO la Catolica para entrenamiento, mencionar MH en la documentacion
+
+DECISION DEL TFM:
+Se usa solo la edicion Catolica como fuente del AT en Inga. Es superset (incluye deuterocanonicos) y produce mas pares. La edicion Mision Horizontes queda en el repositorio como referencia/comparacion pero no se incorpora al corpus de entrenamiento, para evitar duplicar versiculos y sesgar las particiones.

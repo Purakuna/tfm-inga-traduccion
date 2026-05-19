@@ -1,0 +1,44 @@
+FUENTE: Achka Iachag Panga - Constitución Política de Colombia de 1991 en Inga
+URL PDF: https://www.suin-juriscol.gov.co/archivo/constitucionesindigenas/inga.pdf
+Distribuidor: SUIN-Juriscol (Sistema Unico de Informacion Normativa, Ministerio de Justicia y del Derecho, Republica de Colombia)
+Fecha descarga: 2026-05-18
+Tamano descargado: 16.8 MB (83 paginas escaneadas en grayscale JPEG)
+
+EDITOR ORIGINAL: Ministerio de Justicia y del Derecho - Universidad de los Andes
+TRADUCCION COORDINADA POR: Francisco Tandioy Jansasoy
+COORDINACION ACADEMICA: Centro Colombiano de Estudios de Lenguas Aborigenes (C.C.E.L.A.), Universidad de los Andes
+PERIODO DE ELABORACION: 1991-1994
+
+DIALECTO: Inga del Alto Putumayo (Valle de Sibundoy). Consistente con el dialecto del Diccionario Inga (Tandioy Jansasoy et al., 1997) que tambien forma parte del corpus.
+
+LICENCIA: Dominio publico. El texto original de la Constitucion Politica es ley colombiana (1991), dominio publico per se. La traduccion al Inga fue patrocinada por el Ministerio de Justicia colombiano y publicada por una institucion del Estado, por lo que su redistribucion no requiere autorizacion adicional.
+
+PROCESAMIENTO OCR:
+- Herramienta: mistral-ocr-extractor (Mistral OCR API)
+- Fecha: 2026-05-18
+- Output: content.md con 1.792 lineas
+- Articulos detectados: 17 cabeceras "SUG SUIUCHII (N) / Articulo N"
+- Tasa de exito del OCR: alta (texto Inga limpio, glosas interlineales legibles)
+
+ESTRUCTURA DE LOS ARTICULOS BILINGUES (Seccion A, lineas 954+):
+
+Cada articulo aparece como:
+  # SUG SUIUCHII (N) / Articulo N
+
+  N. [parrafo en castellano]
+     [traduccion al Inga]
+     //glosa morfologica interlineal//
+     "parafrasis libre en castellano"
+
+Articulos identificados como bilingues directos (17 en total):
+  Articulo 1, 2, 7, 8, 10, 13, 18, 27, 44, 63, 70, 72, 246, 287, 329, 330, mas algunos transitorios
+
+ESTIMACION DE PARES PARALELOS ANTES DE FILTRADO:
+- 17 articulos x ~5-15 sub-parrafos por articulo = 85-255 pares
+- Adicional: la Seccion B (lineas 1466+) contiene mas traducciones que requieren parseo
+- Estimacion total realista: 200-400 pares paralelos de alta calidad
+
+DIFERENCIA CON EL NT WYCLIFFE:
+- NT: dominio biblico-narrativo, registro arcaico, dialecto Wycliffe (no atribuido a Tandioy)
+- Constitucion: dominio juridico-moderno, registro formal, dialecto Tandioy (consistente con el Diccionario)
+- Aporta diversidad de dominio sustancial para el corpus de entrenamiento
