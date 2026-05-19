@@ -20,7 +20,7 @@ from src.rag.retriever import RetrievedContext, retrieve
 
 load_dotenv()
 
-DEFAULT_MODEL = "claude-sonnet-4-6"
+DEFAULT_MODEL = "claude-opus-4-7"
 DEFAULT_MAX_TOKENS = 256
 
 Direccion = Literal["inga2es", "es2inga"]
