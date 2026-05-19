@@ -7,8 +7,15 @@ sobre el corpus paralelo en pocos minutos.
 NLLB usa codigos de lengua tipo FLORES-200. Para Inga aprovechamos
 `quy_Latn` (Quechua Ayacucho) que ya esta presente en el modelo y comparte
 familia linguistica.
+
+**Bidireccional.** El mismo modelo y el mismo LoRA se entrenan sobre el
+corpus duplicado: cada par (inga, es) se replica como (es, inga). Asi un
+solo adapter sirve para inferir en ambas direcciones segun los codigos
+src_lang / tgt_lang que se le pasen al tokenizer en tiempo de inferencia.
 """
 from __future__ import annotations
+
+from typing import Literal
 
 import torch
 from peft import LoraConfig, TaskType, get_peft_model
@@ -19,6 +26,8 @@ NLLB_MODEL_NAME = "facebook/nllb-200-distilled-600M"
 # Codigos NLLB (FLORES-200)
 LANG_CODE_INGA = "quy_Latn"  # quechua Ayacucho (transferencia desde lengua quechua)
 LANG_CODE_ES = "spa_Latn"
+
+Direccion = Literal["inga2es", "es2inga"]
 
 
 def get_device() -> str:
@@ -32,18 +41,38 @@ def get_device() -> str:
 
 def load_model_and_tokenizer(
     model_name: str = NLLB_MODEL_NAME,
-    src_lang: str = LANG_CODE_INGA,
-    tgt_lang: str = LANG_CODE_ES,
+    direccion: Direccion = "inga2es",
     device: str | None = None,
 ):
-    """Carga modelo + tokenizer NLLB con los codigos src/tgt fijados."""
+    """Carga modelo + tokenizer NLLB con src/tgt segun direccion solicitada.
+
+    `direccion`:
+      - 'inga2es': src=quy_Latn, tgt=spa_Latn
+      - 'es2inga': src=spa_Latn, tgt=quy_Latn
+    """
     device = device or get_device()
+    if direccion == "inga2es":
+        src_lang, tgt_lang = LANG_CODE_INGA, LANG_CODE_ES
+    elif direccion == "es2inga":
+        src_lang, tgt_lang = LANG_CODE_ES, LANG_CODE_INGA
+    else:
+        raise ValueError(f"direccion debe ser 'inga2es' o 'es2inga', recibido: {direccion}")
     tokenizer = AutoTokenizer.from_pretrained(
         model_name, src_lang=src_lang, tgt_lang=tgt_lang
     )
     model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
     model = model.to(device)
     return model, tokenizer
+
+
+def set_direction(tokenizer, direccion: Direccion) -> None:
+    """Reconfigura un tokenizer ya cargado para una nueva direccion."""
+    if direccion == "inga2es":
+        tokenizer.src_lang, tokenizer.tgt_lang = LANG_CODE_INGA, LANG_CODE_ES
+    elif direccion == "es2inga":
+        tokenizer.src_lang, tokenizer.tgt_lang = LANG_CODE_ES, LANG_CODE_INGA
+    else:
+        raise ValueError(f"direccion debe ser 'inga2es' o 'es2inga'")
 
 
 def wrap_with_lora(
@@ -66,7 +95,6 @@ def wrap_with_lora(
 
 
 def trainable_params_summary(model) -> str:
-    """Devuelve un string con el conteo de parametros entrenables vs total."""
     trainable = sum(p.numel() for p in model.parameters() if p.requires_grad)
     total = sum(p.numel() for p in model.parameters())
     return (

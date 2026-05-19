@@ -35,6 +35,27 @@ Acordadas en sesion del 2026-05-18:
 
 7 dias de calendario (18-mayo a 24-mayo). El plan asume ~6-8h productivas diarias. Una jornada se reserva para QA + generacion final del docx.
 
+### 0.3.bis Direccion de la traduccion: BIDIRECCIONAL
+
+Decision tomada el 2026-05-18 (durante D3): Entrega 2 cubre **ambas
+direcciones de traduccion**:
+
+- `inga2es` (Inga -> espanol): direccion natural, mejor cubierta por Claude
+  pretrained y por los datos del corpus de RV1909.
+- `es2inga` (espanol -> Inga): direccion mas dificil; valida la calidad
+  del LoRA y del RAG para generar lengua de bajos recursos.
+
+Implicaciones tecnicas:
+- **Fine-tuning LoRA**: se duplica el corpus de train (4,471 pares ->
+  8,942 ejemplos con direccion mezclada). El mismo adapter sirve para
+  ambas direcciones segun los codigos NLLB src/tgt que se le pasen.
+- **RAG**: se construyen dos indices de ejemplos paralelos en LanceDB:
+  `ejemplos` (indexado por texto Inga, para queries Inga) y
+  `ejemplos_es` (indexado por texto espanol, para queries en espanol).
+- **Prompts Claude**: dos system prompts distintos, uno por direccion.
+- **Evaluacion**: se reportan las 5 configuraciones (A-E) en cada
+  direccion. Total 10 corridas de eval reportadas en la Tabla 8.
+
 ### 0.4 Flujo de generacion del entregable (CRITICO)
 
 Mismo pipeline que Entrega 1, sin excepciones:

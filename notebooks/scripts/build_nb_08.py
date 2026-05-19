@@ -135,19 +135,19 @@ else:
 )
 
 md(
-    """## Indice 3: ejemplos (corpus paralelo train)
+    """## Indice 3 (a): ejemplos (indexado por texto Inga)
 
-Indexa cada par del split de train por el texto Inga. Cuando se recupera,
-se devuelve tambien el texto espanol para usar como few-shot en el prompt
-del LLM.
+Para traduccion Inga -> espanol, los ejemplos paralelos se indexan por la
+oracion Inga (input). Cuando se recupera, se devuelve tambien el texto
+espanol para usar como few-shot en el prompt del LLM.
 """
 )
 
 code(
     """train = pd.read_json(ROOT / "datos" / "splits" / "train.jsonl", lines=True)
-registros_ejemplos = []
+registros_ejemplos_inga = []
 for _, row in train.iterrows():
-    registros_ejemplos.append({
+    registros_ejemplos_inga.append({
         "text": row["texto_inga"],
         "texto_inga": row["texto_inga"],
         "texto_es": row["texto_es"],
@@ -155,10 +155,36 @@ for _, row in train.iterrows():
         "capitulo": int(row["capitulo"]),
         "versiculo": int(row["versiculo"]),
     })
-print(f"Pares en train: {len(registros_ejemplos):,}")
+print(f"Pares en train: {len(registros_ejemplos_inga):,}")
 
-n = build_index("ejemplos", registros_ejemplos, text_field="text")
-print(f"Indice ejemplos creado: {n:,} entradas")
+n = build_index("ejemplos", registros_ejemplos_inga, text_field="text")
+print(f"Indice ejemplos (Inga) creado: {n:,} entradas")
+"""
+)
+
+md(
+    """## Indice 3 (b): ejemplos_es (indexado por texto espanol, para es2inga)
+
+Para soportar la direccion Espanol -> Inga del Notebook 11, se construye un
+segundo indice paralelo con el mismo contenido pero indexado por la
+oracion espanola (la query). Asi un Spanish-input recupera los pares
+paralelos mas similares semanticamente.
+"""
+)
+
+code(
+    """registros_ejemplos_es = []
+for _, row in train.iterrows():
+    registros_ejemplos_es.append({
+        "text": row["texto_es"],
+        "texto_inga": row["texto_inga"],
+        "texto_es": row["texto_es"],
+        "libro": row["libro"],
+        "capitulo": int(row["capitulo"]),
+        "versiculo": int(row["versiculo"]),
+    })
+n = build_index("ejemplos_es", registros_ejemplos_es, text_field="text")
+print(f"Indice ejemplos_es (espanol) creado: {n:,} entradas")
 """
 )
 
