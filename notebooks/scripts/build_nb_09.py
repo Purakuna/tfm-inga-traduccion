@@ -136,28 +136,26 @@ code(
     r'''MAX_LEN = 128
 
 def tokenize_example(example):
+    """Tokeniza un ejemplo con src/tgt segun direccion del par.
+
+    En transformers v5, as_target_tokenizer() fue removido. Se usa el
+    parametro text_target del tokenizer para procesar source y target
+    en una sola llamada.
+    """
     tokenizer.src_lang = example["src_lang"]
     tokenizer.tgt_lang = example["tgt_lang"]
-    inputs = tokenizer(
-        example["src_text"],
+    out = tokenizer(
+        text=example["src_text"],
+        text_target=example["tgt_text"],
         truncation=True,
         padding="max_length",
         max_length=MAX_LEN,
         return_tensors=None,
     )
-    with tokenizer.as_target_tokenizer():
-        labels = tokenizer(
-            example["tgt_text"],
-            truncation=True,
-            padding="max_length",
-            max_length=MAX_LEN,
-            return_tensors=None,
-        )["input_ids"]
-    inputs["labels"] = labels
-    return inputs
+    return out
 
 
-# Tokenizacion en single example (la batch tokenization mezclaria src_lang)
+# Tokenizacion sample-by-sample (la batch tokenization mezclaria src_lang)
 ds_train_tok = ds_train.map(tokenize_example, remove_columns=ds_train.column_names)
 ds_val_tok = ds_val.map(tokenize_example, remove_columns=ds_val.column_names)
 print(f"Train tokenizado: {len(ds_train_tok):,}")
