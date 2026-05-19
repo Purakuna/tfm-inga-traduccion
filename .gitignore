@@ -27,10 +27,23 @@ venv/
 .ipynb_checkpoints/
 
 # Modelos descargados (se cachean en ~/.cache/huggingface)
-models/
+# Anclado al root para no afectar src/models/
+/models/
 *.safetensors
 *.bin
 
 # Datos temporales
 *.tmp
 *.swp
+
+# Secrets (Entrega 2)
+.env
+
+# uv lockfile artifacts
+uv.toml.bak
+
+# Entrega 2: artefactos pesados que se regeneran
+lance_indexes/*.lance/
+datos/cache/
+entrega2/TFM_Entrega2_EslavaSantos.docx
+entrega2/TFM_Entrega2_EslavaSantos.pdf
