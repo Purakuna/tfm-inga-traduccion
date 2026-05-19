@@ -539,7 +539,25 @@ Las cinco configuraciones de la Tabla 4 del Capítulo 3 se evaluaron en las dos 
 | E: LoRA + Claude Opus 4.7 + RAG (refinamiento) | Inga -> Espanol | 10,88 | 37,55 | 0,770 |
 | E: LoRA + Claude Opus 4.7 + RAG (refinamiento) | Espanol -> Inga | 9,98 | 39,00 | 0,790 |
 
-*Nota.* Elaboración propia a partir de los Notebooks 10 y 11. Las cifras en negrita corresponden a la configuración con el valor más alto por métrica y dirección. El pipeline LLM se ejecutó con Claude Opus 4.7; las métricas equivalentes con Claude Sonnet 4.6 se consignan en el Anexo A para la comparación entre modelos del mismo fabricante.
+*Nota.* Elaboración propia a partir de los Notebooks 10 y 11. Las cifras en negrita corresponden a la configuración con el valor más alto por métrica y dirección. El pipeline LLM se ejecutó con Claude Opus 4.7 como modelo principal de reporte; la corrida paralela con Claude Sonnet 4.6 sobre el mismo conjunto de validación se consigna en el Anexo A.
+
+La comparación entre los dos modelos de Claude evaluados sobre exactamente el mismo subconjunto del *val set* permite cuantificar el efecto del escalado del modelo subyacente. Los resultados se sintetizan en la Tabla 9.
+
+**Tabla 9**
+*Comparación intra-Claude (Sonnet 4.6 frente a Opus 4.7) sobre el mismo conjunto de validación, métricas BLEU*
+
+| Configuración | Dirección | Sonnet 4.6 | Opus 4.7 | Δ Opus−Sonnet |
+|---|---|---|---|---|
+| C: Claude zero-shot | Inga → Español | 5,17 | 4,37 | −0,80 |
+| C: Claude zero-shot | Español → Inga | 0,27 | 0,32 | +0,05 |
+| D: Claude + RAG | Inga → Español | 11,97 | 17,89 | **+5,92** |
+| D: Claude + RAG | Español → Inga | 8,22 | 10,95 | **+2,73** |
+| E: LoRA + Claude + RAG (refinamiento) | Inga → Español | 12,01 | 10,88 | −1,13 |
+| E: LoRA + Claude + RAG (refinamiento) | Español → Inga | 8,82 | 9,98 | +1,16 |
+
+*Nota.* Elaboración propia. Diferencias positivas a favor de Opus 4.7 en negrita.
+
+El patrón es revelador: el modelo de mayor capacidad obtiene su ventaja principal cuando dispone de contexto recuperado relevante (configuración D), donde alcanza una mejora cercana a 6 puntos BLEU en la dirección Inga-español. En ausencia de contexto (configuración C) los dos modelos rinden prácticamente igual; cuando el *seed* del LoRA introduce errores léxicos (configuración E), el modelo menos avanzado preserva el *seed* con mayor fidelidad y obtiene un BLEU ligeramente superior. La observación complementa el análisis que se desarrolla en el Capítulo 5.
 
 Cinco hallazgos se derivan de esta tabla.
 
@@ -592,7 +610,9 @@ La segunda observación es sobre la contribución específica de la recuperació
 
 La tercera observación concierne a la asimetría entre direcciones de traducción. Las configuraciones A, B y C registran caídas sustanciales al pasar de Inga-español a español-Inga: la dirección de generación hacia la lengua de bajos recursos es estructuralmente más difícil porque el decodificador no dispone de datos suficientes para aprender la distribución de salida. El adaptador LoRA entra en modo de repetición patológica en español-Inga; el modelo de frontera sin RAG produce salidas mayoritariamente irrelevantes. La configuración D atenúa esta asimetría: la diferencia entre direcciones se reduce de 8 puntos BLEU (configuración B) a aproximadamente 7 puntos (configuración D), y proporcionalmente la dirección difícil pasa de representar el 22 % del rendimiento de la dirección fácil al 61 %. El RAG, al inyectar ejemplos paralelos del corpus, suministra al modelo de frontera plantillas concretas de generación en la lengua de bajos recursos que mitigan el déficit de datos en el preentrenamiento.
 
-La cuarta observación se refiere a la configuración E (refinamiento de la salida del LoRA por Claude Opus 4.7 con RAG), que no supera a la configuración D directa. El resultado contraintuitivo sugiere que la *semilla* producida por el adaptador, cuya calidad léxica es modesta, sesga al modelo de frontera hacia traducciones menos fieles que las que produciría sin esa influencia. La inspección manual de varios ejemplos confirma que Opus 4.7 conserva errores léxicos del *seed* del LoRA y ajusta únicamente el plano sintáctico, lo que penaliza las métricas basadas en *n-grama*. El hallazgo sugiere que la estrategia de *refinement* requiere un *seed* de calidad superior a la disponible con un adaptador entrenado sobre 4.512 pares paralelos. Una observación complementaria, registrada al ejecutar la misma configuración E con Claude Sonnet 4.6 en lugar de Opus 4.7, muestra que el modelo menos avanzado produce un BLEU superior en esta tarea de refinamiento (14,32 frente a 10,88 en Inga-español); el patrón sugiere que el modelo de frontera más capaz reescribe con mayor agresividad el *seed* defectuoso, alejándose más de la referencia.
+La cuarta observación se refiere a la configuración E (refinamiento de la salida del LoRA por Claude con RAG), que no supera a la configuración D directa. El resultado contraintuitivo sugiere que la *semilla* producida por el adaptador, cuya calidad léxica es modesta, sesga al modelo de frontera hacia traducciones menos fieles que las que produciría sin esa influencia. La inspección manual de varios ejemplos confirma que Claude conserva errores léxicos del *seed* del LoRA y ajusta únicamente el plano sintáctico, lo que penaliza las métricas basadas en *n-grama*.
+
+La comparación intra-Claude reportada en la Tabla 9 refuerza esta lectura. En la configuración D, donde el modelo recibe contexto recuperado pero no un *seed*, Opus 4.7 aventaja a Sonnet 4.6 en aproximadamente 6 puntos BLEU en la dirección Inga-español y 3 puntos en la inversa: la mayor capacidad del modelo se traduce directamente en mejor uso del contexto. En la configuración E, donde el *seed* del LoRA introduce errores léxicos, la ventaja se invierte: Sonnet 4.6 produce un BLEU ligeramente superior (12,01 frente a 10,88 en Inga-español). El patrón sugiere que el modelo más capaz reescribe con mayor agresividad el *seed* defectuoso, alejándose más de la referencia que el modelo menos avanzado, que tiende a preservar el *seed* y a ajustar de forma más conservadora. La implicación práctica es que la estrategia de refinamiento jerárquico no se beneficia automáticamente del escalado del modelo de refinamiento; requiere un *seed* de calidad superior a la disponible con un adaptador entrenado sobre 4.512 pares paralelos.
 
 Tres limitaciones del estudio deben señalarse para encuadrar las conclusiones anteriores. La primera es la ausencia del dialecto Medio Putumayo en el corpus de entrenamiento. La cartilla *Antihua Pacay Gentecunapa Parlocuna* es la única fuente disponible para esa variante, y su alineación oracional requiere un alineador semántico basado en *sentence embeddings* multilingües que no forma parte del alcance de este estudio. La segunda es el tamaño acotado del subconjunto del *val set* utilizado para reportar métricas: 100 ejemplos por dirección frente a los 564 disponibles, decisión motivada por el control de costos en las llamadas a la API y por el tiempo de inferencia local del adaptador NLLB. La tercera es la ausencia de validación humana con hablantes nativos, indispensable para capturar dimensiones de calidad que las métricas automáticas no reflejan, como la naturalidad cultural y la fluidez idiomática en cada dialecto (Ebrahimi et al., 2024; Mager et al., 2023).
 
@@ -723,7 +743,9 @@ La carpeta `datos/` contiene las salidas estructuradas y los corpus generados:
 - `datos/antihua_pacay_alineado.jsonl`, 86 pares exploratorios del Medio Putumayo.
 - `datos/corpus_paralelo.jsonl`, corpus unificado.
 - `datos/splits/train.jsonl`, `val.jsonl`, `test.jsonl`, particiones 80/10/10.
-- `datos/metricas_entrega2.json` y `datos/predicciones_val_completo.jsonl`, salidas de la evaluación comparativa.
+- `datos/metricas_entrega2.json`, métricas de las cinco configuraciones con Claude Opus 4.7 (reporte principal del Capítulo 4).
+- `datos/metricas_entrega2_sonnet.json`, métricas de las configuraciones C, D y E con Claude Sonnet 4.6 sobre el mismo conjunto de validación, utilizadas para la comparación intra-Claude de la Tabla 9.
+- `datos/predicciones_val_completo.jsonl`, predicciones por configuración para inspección cualitativa.
 - `datos/ocr/`, fuentes OCR derivadas, con subcarpetas `inga-kichwa/` (cinco fuentes primarias del Inga) y `reina-valera-1909/` (27 archivos USFM del NT en español).
 
 La carpeta `bibliografia/` contiene la base bibliográfica verificada del proyecto (`refs_verificadas.md`), con identificadores estables asociados a cada entrada.

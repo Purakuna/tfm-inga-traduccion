@@ -1,52 +1,52 @@
 {
   "config_A_nllb_zeroshot_inga2es": {
-    "bleu": 2.0867,
-    "chrf": 19.9599,
-    "bertscore": 0.6998
+    "bleu": 1.8178,
+    "chrf": 19.4981,
+    "bertscore": 0.695
   },
   "config_A_nllb_zeroshot_es2inga": {
-    "bleu": 0.2688,
-    "chrf": 16.9968,
-    "bertscore": 0.6781
+    "bleu": 0.1563,
+    "chrf": 15.8824,
+    "bertscore": 0.6744
   },
   "config_B_nllb_lora_inga2es": {
-    "bleu": 9.3176,
-    "chrf": 29.4258,
-    "bertscore": 0.7638
+    "bleu": 8.1822,
+    "chrf": 27.19,
+    "bertscore": 0.7515
   },
   "config_B_nllb_lora_es2inga": {
-    "bleu": 1.4203,
-    "chrf": 24.5535,
-    "bertscore": 0.6767
+    "bleu": 1.794,
+    "chrf": 22.8853,
+    "bertscore": 0.676
   },
   "config_C_claude_zeroshot_inga2es": {
-    "bleu": 5.4516,
-    "chrf": 29.9191,
-    "bertscore": 0.7379
+    "bleu": 5.1729,
+    "chrf": 29.8435,
+    "bertscore": 0.7318
   },
   "config_C_claude_zeroshot_es2inga": {
-    "bleu": 0.1894,
-    "chrf": 19.7019,
-    "bertscore": 0.7096
+    "bleu": 0.2746,
+    "chrf": 18.8075,
+    "bertscore": 0.7047
   },
   "config_D_claude_rag_inga2es": {
-    "bleu": 12.6068,
-    "chrf": 36.6357,
-    "bertscore": 0.7635
+    "bleu": 11.9731,
+    "chrf": 36.9475,
+    "bertscore": 0.7609
   },
   "config_D_claude_rag_es2inga": {
-    "bleu": 9.3299,
-    "chrf": 35.7772,
-    "bertscore": 0.7709
+    "bleu": 8.2236,
+    "chrf": 33.7714,
+    "bertscore": 0.7726
   },
   "config_E_lora_plus_claude_rag_inga2es": {
-    "bleu": 14.3208,
-    "chrf": 39.3161,
-    "bertscore": 0.7776
+    "bleu": 12.0087,
+    "chrf": 38.0396,
+    "bertscore": 0.7705
   },
   "config_E_lora_plus_claude_rag_es2inga": {
-    "bleu": 9.315,
-    "chrf": 36.8088,
-    "bertscore": 0.7741
+    "bleu": 8.8228,
+    "chrf": 34.9546,
+    "bertscore": 0.7773
   }
 }

@@ -392,44 +392,158 @@ def emit_section(md_block: str, drop_heading: bool = False):
 md_text = MD_PATH.read_text(encoding='utf-8')
 
 
+# =========================================================================
+# Portada del docx de bloques: contexto del feedback de E1
+# =========================================================================
+add_paragraph('Bloques de actualizacion del TFM', style=S_H1U)
+add_paragraph(
+    'Este documento contiene UNICAMENTE el contenido nuevo y las correcciones '
+    'derivadas del feedback formal de la primera version del trabajo. No '
+    'reproduce capitulos que ya estan correctos en el docx existente. Cada '
+    'bloque va precedido por un separador con la instruccion exacta de donde '
+    'insertarlo. Hay diez bloques en total.',
+    style=S_NORMAL,
+)
+add_paragraph('')
+add_paragraph('Mapeo bloques <-> feedback de la primera entrega:', style=S_NORMAL, bold=True)
+add_rich_paragraph(
+    '- Bloques 1 y 2 (Resumen y Abstract): actualizan las cifras del corpus, '
+    'el inventario de la base de conocimiento y el hallazgo experimental '
+    'principal. Sustituyen las versiones previas.',
+    style=S_NORMAL,
+)
+add_rich_paragraph(
+    '- Bloques 3 y 4 (Cap 3.2 y Cap 3.3.2): reescriben los siete objetivos '
+    'SMART y la descripcion de las fases en prosa fluida, atendiendo el indicio '
+    'de IA generativa que el director marco sobre la estructura demasiado '
+    'canonica de la version previa.',
+    style=S_NORMAL,
+)
+add_rich_paragraph(
+    '- Bloque 5 (Capitulo 4 completo): sustituye el Capitulo 4 en su totalidad. '
+    'La estructura cambia respecto a la version previa: pasa de tres subsecciones '
+    '(Fase 1, Fase 2, Fase 3 inicial) a siete subsecciones que cubren las Fases '
+    '1 a 6 con resultados experimentales reales. Las cifras del corpus, los '
+    'indices RAG, el adaptador LoRA y la tabla comparativa de configuraciones '
+    'son contenido nuevo.',
+    style=S_NORMAL,
+)
+add_rich_paragraph(
+    '- Bloque 6 (Capitulo 5): sustituye la estructura vacia heredada de la '
+    'plantilla por el contenido completo: conclusiones, discusion y lineas '
+    'futuras.',
+    style=S_NORMAL,
+)
+add_rich_paragraph(
+    '- Bloque 7 (Anexo A): sustituye el listado de tres notebooks por la '
+    'estructura completa del repositorio actual (doce notebooks numerados, '
+    'paquete src/ con tres subpaquetes, datos generados, licenciamiento '
+    'ampliado).',
+    style=S_NORMAL,
+)
+add_rich_paragraph(
+    '- Bloque 8 (Referencia nueva): anade una entrada bibliografica que cita '
+    'Finkelstein et al. (2026) sobre TranslateGemma. Va en orden alfabetico, '
+    'inmediatamente despues de Ebrahimi et al. (2024).',
+    style=S_NORMAL,
+)
+add_rich_paragraph(
+    '- Bloque 9 (Ejemplo de pie de tabla y figura en formato APA correcto): '
+    'modelo visual para aplicar al rotulado de TODAS las tablas y figuras del '
+    'documento, incluidas las heredadas (Tabla 1 a 5, Figura 1 a 8). Atiende '
+    'el fallo de formato senalado por el director: identificador en negrita '
+    'en linea propia, titulo en cursiva debajo, eliminacion del literal '
+    '"Figure"/"Table" en ingles.',
+    style=S_NORMAL,
+)
+add_paragraph('')
+add_rich_paragraph(
+    'Los capitulos 1 y 2 del docx existente no requieren cambios y no se '
+    'reproducen aqui. La portada y el header del documento conservan los '
+    'datos correctos de la version previa salvo la fecha, que debe '
+    'actualizarse manualmente.',
+    style=S_NORMAL,
+)
+add_page_break()
+
 # ---- Bloque 1: Resumen ----
-add_block_header('Sustituir la seccion "Resumen" en tu .docx final')
+add_block_header(
+    'Bloque 1 de 9. SUSTITUIR el contenido actual de la seccion "Resumen". '
+    'Las cifras del corpus (5.641 pares), de los indices (4.900 lexicas, 605 '
+    'gramaticales, 9.024 ejemplos) y el resultado experimental (17,89 BLEU) '
+    'son nuevos respecto a la version previa.'
+)
 add_paragraph('Resumen', style=S_H1U)
 emit_section(extract_section(md_text, r'^## Resumen\s*$'), drop_heading=True)
 add_page_break()
 
 # ---- Bloque 2: Abstract ----
-add_block_header('Sustituir la seccion "Abstract" en tu .docx final')
+add_block_header(
+    'Bloque 2 de 9. SUSTITUIR el contenido actual de la seccion "Abstract". '
+    'Traduccion exacta del Resumen actualizado.'
+)
 add_paragraph('Abstract', style=S_H1U)
 emit_section(extract_section(md_text, r'^## Abstract\s*$'), drop_heading=True)
 add_page_break()
 
-# ---- Bloque 3: Capitulo 3 - Objetivos especificos y Fases (anti-LLM rewrite) ----
-add_block_header('Sustituir Capitulo 3.1 (Objetivo general), 3.2 (Objetivos especificos) y 3.3.2 (Fases) - reescritos para reducir senales de IA generativa')
-emit_section(extract_section(md_text, r'^## 3\.1 Objetivo general\s*$'))
-add_paragraph('')
+# ---- Bloque 3: Capitulo 3.2 Objetivos especificos (anti-LLM) ----
+add_block_header(
+    'Bloque 3 de 9. SUSTITUIR el contenido actual de la seccion "3.2 Objetivos '
+    'especificos". La nueva version presenta los siete objetivos como prosa '
+    'fluida en lugar de una lista canonica de bullets con criterio SMART '
+    'estampado al final de cada uno. Aborda el indicio de IA generativa '
+    'senalado por el director.'
+)
 emit_section(extract_section(md_text, r'^## 3\.2 Objetivos específicos\s*$'))
-add_paragraph('')
+add_page_break()
+
+# ---- Bloque 4: Capitulo 3.3.2 Fases (anti-LLM) ----
+add_block_header(
+    'Bloque 4 de 9. SUSTITUIR el contenido actual de la seccion "3.3.2 Fases '
+    'del proyecto". La nueva version rompe el patron repetitivo "La Fase N '
+    '(X) ejecuta Y" variando los inicios de parrafo y las longitudes.'
+)
 emit_section(extract_section(md_text, r'^### 3\.3\.2 Fases del proyecto\s*$'))
 add_page_break()
 
-# ---- Bloque 4: Capitulo 4 completo (Desarrollo especifico) ----
-add_block_header('Sustituir todo el Capitulo 4 en tu .docx final (4.1 a 4.7)')
+# ---- Bloque 5: Capitulo 4 completo (Desarrollo especifico) ----
+add_block_header(
+    'Bloque 5 de 9. SUSTITUIR todo el Capitulo 4 en el docx final. La '
+    'estructura cambia respecto a la version previa: las tres subsecciones '
+    'originales (Fase 1, Fase 2, Fase 3 inicial, mas Repositorio, mas Proximos '
+    'pasos hacia la siguiente entrega) se reemplazan por siete subsecciones '
+    'que cubren las Fases 1 a 6 con resultados experimentales. Las Tablas 6, '
+    '7 y 8 y las Figuras 9, 10, 11 y 12 son nuevas y siguen el formato APA '
+    'correcto (Bloque 9 muestra el patron a replicar).'
+)
 emit_section(extract_section(md_text, r'^# 4\. Desarrollo específico'))
 add_page_break()
 
-# ---- Bloque 5: Capitulo 5 completo (Conclusiones) ----
-add_block_header('Sustituir todo el Capitulo 5 en tu .docx final (5.1 a 5.3)')
+# ---- Bloque 6: Capitulo 5 completo (Conclusiones) ----
+add_block_header(
+    'Bloque 6 de 9. SUSTITUIR el Capitulo 5 vacio por el contenido completo: '
+    'conclusiones, discusion analitica con cuatro observaciones y tres '
+    'limitaciones, mas cinco lineas de trabajo futuras.'
+)
 emit_section(extract_section(md_text, r'^# 5\. Conclusiones'))
 add_page_break()
 
-# ---- Bloque 6: Anexo A actualizado ----
-add_block_header('Sustituir Anexo A en tu .docx final (estructura del repositorio expandida)')
+# ---- Bloque 7: Anexo A actualizado ----
+add_block_header(
+    'Bloque 7 de 9. SUSTITUIR el Anexo A del docx final. La nueva version '
+    'lista los doce notebooks ejecutables (00 a 11), los modulos src/, los '
+    'archivos del corpus, los splits y el licenciamiento ampliado (incluye '
+    'Reina-Valera 1909 de dominio publico).'
+)
 emit_section(extract_section(md_text, r'^# Anexo A\.'))
 add_page_break()
 
-# ---- Bloque 7: Nueva referencia bibliografica (Finkelstein 2026 TranslateGemma) ----
-add_block_header('Anadir esta entrada nueva en la seccion "Referencias bibliograficas" (orden alfabetico - va despues de Ebrahimi et al.)')
+# ---- Bloque 8: Nueva referencia bibliografica ----
+add_block_header(
+    'Bloque 8 de 9. ANADIR esta entrada nueva en la seccion "Referencias '
+    'bibliograficas", en orden alfabetico (va inmediatamente despues de '
+    'Ebrahimi et al., 2024).'
+)
 add_rich_paragraph(
     'Finkelstein, M., Caswell, I., Domhan, T., Peter, J.-T., Juraska, J., Riley, P., Deutsch, D., '
     'Kovacs, G., Dilanni, C., Cherry, C., Briakou, E., Nielsen, E., Luo, J., Black, K., Mullins, R., '
@@ -437,6 +551,30 @@ add_rich_paragraph(
     '*TranslateGemma: Technical Report* [arXiv preprint]. https://arxiv.org/abs/2601.09012',
     style=S_BIB,
 )
+add_page_break()
+
+# ---- Bloque 9: Ejemplo de formato APA correcto para captions ----
+add_block_header(
+    'Bloque 9 de 9. REFERENCIA VISUAL. Modelo del formato APA correcto para '
+    'tablas y figuras, a aplicar manualmente al rotulado de TODAS las que '
+    'aparecen en el documento, incluidas las heredadas (Tabla 1 a 5, Figura '
+    '1 a 8). El formato exige tres reglas conjuntas: etiqueta en castellano '
+    '(Tabla / Figura, NO Table / Figure), identificador en negrita en linea '
+    'propia, titulo en cursiva sin punto en la linea siguiente. Los rotulos '
+    'de las Tablas 6, 7 y 8 y de las Figuras 9, 10, 11 y 12 incluidos en el '
+    'Bloque 5 ya cumplen este patron y pueden copiarse como plantilla.'
+)
+add_paragraph('Ejemplo correcto para una figura:', style=S_NORMAL, bold=True)
+add_paragraph('')
+add_caption('Figura', 1, 'Ubicación del pueblo Inga en el departamento del Putumayo')
+add_paragraph('(aqui iria la figura)', style=S_NORMAL, italic=True, alignment=WD_ALIGN_PARAGRAPH.CENTER)
+add_note('Elaboracion propia con base en datos de OpenStreetMap contributors (ODbL).')
+add_paragraph('')
+add_paragraph('Ejemplo correcto para una tabla:', style=S_NORMAL, bold=True)
+add_paragraph('')
+add_caption('Tabla', 3, 'Inventario de recursos lingüísticos primarios utilizados en la construcción del corpus')
+add_paragraph('(aqui iria la tabla)', style=S_NORMAL, italic=True, alignment=WD_ALIGN_PARAGRAPH.CENTER)
+add_note('Elaboracion propia. La cifra total de paginas OCR asciende a 1.094.')
 
 
 # ============================================================================
