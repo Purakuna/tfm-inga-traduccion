@@ -1,0 +1,24 @@
+FUENTE: Reina-Valera 1909 (Nuevo Testamento)
+URL: https://ebible.org/Scriptures/spaRV1909_usfm.zip
+Fecha descarga: 2026-05-18
+Formato: USFM (Unified Standard Format Markers)
+Cobertura: Solo Nuevo Testamento (27 libros, 70-MAT a 96-REV)
+Licencia: Public Domain (Dominio Publico) - confirmado en copr.htm del bundle
+Distribuidor: eBible.org (haiola conversion certificada)
+Traduccion: Reina y Valera
+Dialecto: Castellano 1909
+Source files dated: 2015-08-10
+
+NOTAS:
+- Bundle original incluia toda la Biblia (Antiguo + Nuevo Testamento, 66 libros).
+- Se conservaron solo los 27 libros del Nuevo Testamento para alineacion con el NT en Inga.
+- Los archivos USFM incluyen marcado de Strong's numbers (etiquetas \w...|strong="GNNNN"\w*) que se filtra en el notebook de extraccion.
+- Cumple plenamente con el criterio de "bien comun" / "redistribuible" del TFM.
+
+ALTERNATIVA CONSIDERADA Y DESCARTADA:
+- Torres Amat (1832): catolica + dominio publico, pero los unicos sources disponibles eran scans
+  de archive.org con OCR ruidosa (columnas mezcladas, texto latino paralelo, marcadores
+  romanos/arabigos inconsistentes). Estimacion: alineacion 60-80% vs >95% con RV1909.
+- Biblia Latinoamericana: copyrighted (Editorial Verbo Divino + herederos de Bernardo Hurault
+  hasta ~2074); el PDF de muestra publicado en verbodivino.es solo cubre Genesis hasta
+  capitulo 8 y NO incluye el Nuevo Testamento.

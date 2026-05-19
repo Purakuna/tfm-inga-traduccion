@@ -24,7 +24,7 @@ Del documento `project_entrega1_feedback_director.md` y de la lectura del PDF en
 Acordadas en sesion del 2026-05-18:
 
 - **Estrategia**: Camino 1 (Breadth) - cubrir las 6 fases con experimento minimo en cada una, sacrificando ablations completas (esas van para Entrega Final).
-- **NT espanol**: Biblia Torres Amat (1832), catolica, dominio publico. Se procesa via `mistral-ocr-extractor`.
+- **NT espanol**: Reina-Valera 1909, dominio publico, **descargado en formato USFM estructurado desde eBible.org** (`https://eBible.org/Scriptures/spaRV1909_usfm.zip`). Decision tomada el 2026-05-18 tras descartar (a) Biblia Latinoamericana por copyright y (b) Torres Amat 1832 por baja calidad del OCR disponible (scans con columnas mezcladas y texto latino paralelo). Aunque RV1909 es traduccion protestante, la estructura libro/capitulo/versiculo del NT es identica al canon catolico y por tanto la alineacion con el NT Inga (catolico) funciona sin perdida estructural. La eleccion se documenta en `datos/ocr/reina-valera-1909/source.txt`.
 - **Embeddings**: Gemini `text-embedding-004` (multilingue, 768-dim, presupuesto cubierto).
 - **Vector DB**: LanceDB (embedded, columnar).
 - **LLM de frontera**: Claude via `ANTHROPIC_API_KEY` existente. Val set acotado a ~100 ejemplos para controlar costo.
@@ -109,7 +109,7 @@ Mismo pipeline que Entrega 1, sin excepciones:
    [Notebook 03: extraccion NT estructurada]
             |
             v
-   [Notebook 04: alineacion NT Inga <-> Torres Amat]
+   [Notebook 04: alineacion NT Inga <-> Reina-Valera 1909]
             |
             v
    [Notebook 05: refinamiento Antihua Pacay con sliding window]
@@ -231,7 +231,7 @@ src/
     runner.py                             # ejecutor de configs
 
 datos/
-  torres_amat_nt.jsonl                    # NT Torres Amat estructurado
+  torres_amat_nt.jsonl                    # NT Reina-Valera 1909 estructurado
   nt_inga_estructurado.jsonl              # reextraccion de NT Inga limpia
   corpus_paralelo.jsonl                   # corpus unificado
   splits/
@@ -260,7 +260,7 @@ entrega2/
 ```
 README.md                                  # actualizar estado del proyecto + estructura
 bibliografia/refs_verificadas.md          # eliminar/reemplazar refs 2026 no verificadas
-datos/ocr/README.md                       # documentar la licencia de Torres Amat
+datos/ocr/README.md                       # documentar la licencia de Reina-Valera 1909
 .gitignore                                # excluir models/ pesados, datos/cache/
 ```
 
@@ -352,7 +352,7 @@ Implementado via `add_caption()` reescrito en `entrega2/build_docx.py`.
 
 | Dia | Fecha | Foco | Deliverables |
 |---|---|---|---|
-| D1 | Lun 18-may | Fundamentos + corpus NT | Plan aprobado, Torres Amat descargado, Notebook 03 listo, refs verificadas |
+| D1 | Lun 18-may | Fundamentos + corpus NT | Plan aprobado, Reina-Valera 1909 descargado, Notebook 03 listo, refs verificadas |
 | D2 | Mar 19-may | Alineacion + Antihua | Notebooks 04, 05, 06 funcionando; corpus_paralelo.jsonl con ~5K+ pares |
 | D3 | Mie 20-may | RAG infrastructure | Notebook 07; src/rag/ completo; tests basicos pasando |
 | D4 | Jue 21-may | Fine-tuning LoRA | Notebook 08; checkpoint en models/; primer eval config A+B |
@@ -396,8 +396,8 @@ Para considerar la Entrega 2 lista para enviar, deben cumplirse:
 
 | Riesgo | Probabilidad | Impacto | Mitigacion |
 |---|---|---|---|
-| OCR de Torres Amat tarda o falla | Media | Alto | Plan B: usar `bible-api.com` o `ebible.org` que tienen Torres Amat como texto | 
-| Alineacion NT Inga <-> Torres Amat tiene pocos matches | Media | Alto | Plan B: usar fuzzy matching + alineacion por capitulo en lugar de versiculo |
+| OCR de Reina-Valera 1909 tarda o falla | Media | Alto | Plan B: usar `bible-api.com` o `ebible.org` que tienen Reina-Valera 1909 como texto | 
+| Alineacion NT Inga <-> Reina-Valera 1909 tiene pocos matches | Media | Alto | Plan B: usar fuzzy matching + alineacion por capitulo en lugar de versiculo |
 | LoRA no converge en 1 run | Baja | Alto | Plan B: documentar el run como baseline; reportar metricas de la mejor checkpoint |
 | Cuota Anthropic insuficiente para 100 ejemplos | Baja | Medio | Reducir val set a 50; documentar como limitacion explicita |
 | Cuota Gemini insuficiente para todos los embeddings | Baja | Medio | Reducir batch o usar LaBSE local como fallback |
