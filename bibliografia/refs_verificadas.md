@@ -43,7 +43,7 @@
 ### A.3 Descartadas por alucinación grave (usar reemplazos de sección B)
 
 - ❌ "Ortega, J. et al. (2025). Improving Indigenous Language Machine Translation with Synthetic Data. arXiv:2601.03135" → el paper existe pero no es de Ortega; ver **B.2**.
-- ❌ "Jara-Roa, D. et al. (2026). TranslateGemma: Technical Report. arXiv:2601.09012" → autores alucinados; paper real de Google DeepMind (Finkelstein et al.).
+- ❌ "Jara-Roa, D. et al. (2026). TranslateGemma: Technical Report. arXiv:2601.09012" → autores alucinados; reemplazada por entrada **34** de la sección **B.5** con los autores reales (Finkelstein et al.) verificada el 2026-05-18.
 - ❌ "Diagne, A. et al. (2025). The Serendipity of Claude AI" → autores reales son Dembele, Coulibaly, Leventhal; si se cita, usar nombres correctos: https://arxiv.org/abs/2503.03380.
 
 ---
@@ -112,6 +112,11 @@
 
 33. **UNESCO. (2022).** *World Atlas of Languages*. UNESCO. https://en.wal.unesco.org/
 
+### B.5 Reemplazos verificados el 2026-05-18 (Entrega 2)
+
+34. **Finkelstein, M., Caswell, I., Domhan, T., Peter, J.-T., Juraska, J., Riley, P., Deutsch, D., Kovacs, G., Dilanni, C., Cherry, C., Briakou, E., Nielsen, E., Luo, J., Black, K., Mullins, R., Agrawal, S., Xu, W., Kats, E., Jaskiewicz, S., Freitag, M., & Vilar, D. (2026).** *TranslateGemma Technical Report*. arXiv preprint arXiv:2601.09012. https://arxiv.org/abs/2601.09012
+ > **Reemplaza al "Jara-Roa, D. et al. (2026)" alucinado** (sección A.3). Verificada el 2026-05-18 via WebFetch sobre arXiv abstract. Modelo TranslateGemma 12B publicado por el equipo de Google Translate como base ajustable para investigación en traducción, citado en la Tabla 2 (comparativa de modelos multilingües candidatos) del documento del TFM.
+
 ---
 
 ## C. Referencias pendientes de verificación adicional
@@ -124,5 +129,10 @@
 ## Conteo final
 
 - 13 en **A** (verificadas/corregidas de la propuesta)
-- 20 en **B** (nuevas verificadas)
-- **Total: 33 referencias sólidas**, muy por encima del mínimo UNIR de 20.
+- 21 en **B** (nuevas verificadas, incluye Finkelstein 2026 añadida en Entrega 2)
+- **Total: 34 referencias sólidas**, muy por encima del mínimo UNIR de 20.
+
+## Historial de verificaciones
+
+- 2026-04-21: Verificación inicial por agente de investigación (entrega 1).
+- 2026-05-18: Re-verificación de las dos referencias 2026 (Dhawan y Finkelstein/TranslateGemma) via WebFetch sobre arXiv. Ambas confirmadas como reales y con autores correctos; Finkelstein añadida formalmente a B.5.
