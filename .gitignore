@@ -47,3 +47,7 @@ lance_indexes/*.lance/
 datos/cache/
 entrega2/TFM_Entrega2_EslavaSantos.docx
 entrega2/TFM_Entrega2_EslavaSantos.pdf
+
+# Word: archivos de bloqueo y backups automaticos del script build_docx_e2.py
+~$*
+*.backup_*.docx
