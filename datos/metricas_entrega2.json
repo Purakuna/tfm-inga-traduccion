@@ -18,5 +18,35 @@
     "bleu": 1.4203,
     "chrf": 24.5535,
     "bertscore": 0.6767
+  },
+  "config_C_claude_zeroshot_inga2es": {
+    "bleu": 5.4516,
+    "chrf": 29.9191,
+    "bertscore": 0.7379
+  },
+  "config_C_claude_zeroshot_es2inga": {
+    "bleu": 0.1894,
+    "chrf": 19.7019,
+    "bertscore": 0.7096
+  },
+  "config_D_claude_rag_inga2es": {
+    "bleu": 12.6068,
+    "chrf": 36.6357,
+    "bertscore": 0.7635
+  },
+  "config_D_claude_rag_es2inga": {
+    "bleu": 9.3299,
+    "chrf": 35.7772,
+    "bertscore": 0.7709
+  },
+  "config_E_lora_plus_claude_rag_inga2es": {
+    "bleu": 14.3208,
+    "chrf": 39.3161,
+    "bertscore": 0.7776
+  },
+  "config_E_lora_plus_claude_rag_es2inga": {
+    "bleu": 9.315,
+    "chrf": 36.8088,
+    "bertscore": 0.7741
   }
 }
