@@ -1,0 +1,14 @@
+{
+  "_model": "gemini-3.1-pro-preview",
+  "_n": 100,
+  "config_D_gemini_rag_inga2es": {
+    "bleu": 15.0465,
+    "chrf": 39.3405,
+    "bertscore": 0.7811
+  },
+  "config_D_gemini_rag_es2inga": {
+    "bleu": 10.7725,
+    "chrf": 37.4935,
+    "bertscore": 0.7894
+  }
+}
