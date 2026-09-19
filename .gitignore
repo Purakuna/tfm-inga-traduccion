@@ -51,3 +51,13 @@ entrega2/TFM_Entrega2_EslavaSantos.pdf
 # Word: archivos de bloqueo y backups automaticos del script build_docx_e2.py
 ~$*
 *.backup_*.docx
+
+# Web app
+webapp/frontend/node_modules/
+webapp/frontend/dist/
+.playwright-mcp/
+# Wiki: base y arbol markdown se reconstruyen desde datos/wiki/seed + feedback
+datos/wiki/wiki.db*
+datos/wiki/seed/.cache/
+# Arbol markdown de la wiki: se reconstruye con python -m src.wiki.bootstrap
+datos/wiki/pages/
