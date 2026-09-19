@@ -20,8 +20,15 @@ from src.rag.retriever import RetrievedContext, retrieve
 
 load_dotenv()
 
-DEFAULT_MODEL = "claude-sonnet-4-6"
-DEFAULT_MAX_TOKENS = 256
+DEFAULT_MODEL = "claude-fable-5-1"
+# Fable razona siempre (thinking adaptativo) y ese razonamiento cuenta contra
+# max_tokens, asi que el limite debe cubrir razonamiento + traduccion.
+DEFAULT_MAX_TOKENS = 16000
+DEFAULT_EFFORT = "high"
+
+# Si los clasificadores de seguridad de Fable rechazan la peticion, la API la
+# reintenta en otro modelo dentro de la misma llamada (fallback del lado servidor).
+FALLBACK_BETA = "server-side-fallback-2026-07-01"
 
 Direccion = Literal["inga2es", "es2inga"]
 
@@ -105,6 +112,35 @@ def build_prompt(sentence: str, ctx: RetrievedContext | None, direccion: Direcci
     return f"{contexto}\n\n{cabecera}:\n\n{sentence}"
 
 
+def complete(
+    system: str,
+    prompt: str,
+    model: str = DEFAULT_MODEL,
+    effort: str = DEFAULT_EFFORT,
+) -> str:
+    """Llama a Claude y devuelve solo el texto de la respuesta.
+
+    La respuesta trae bloques de razonamiento antes del texto, por eso no se
+    puede leer content[0] directamente.
+    """
+    client = _get_client()
+    resp = client.beta.messages.create(
+        model=model,
+        max_tokens=DEFAULT_MAX_TOKENS,
+        system=system,
+        messages=[{"role": "user", "content": prompt}],
+        output_config={"effort": effort},
+        betas=[FALLBACK_BETA],
+        # anthropic 0.102 aun no tipa `fallbacks`; se envia en el cuerpo.
+        extra_body={"fallbacks": "default"},
+    )
+    if resp.stop_reason == "refusal":
+        raise RuntimeError(f"Claude rechazo la peticion: {resp.stop_details}")
+    if resp.stop_reason == "max_tokens":
+        raise RuntimeError("Respuesta truncada: sube DEFAULT_MAX_TOKENS.")
+    return "".join(b.text for b in resp.content if b.type == "text").strip()
+
+
 def translate(
     sentence: str,
     direccion: Direccion = "inga2es",
@@ -125,11 +161,4 @@ def translate(
         ctx = retrieve(sentence, top_k_per_index=top_k)
     prompt = build_prompt(sentence, ctx, direccion)
     system = SYSTEM_PROMPT_INGA2ES if direccion == "inga2es" else SYSTEM_PROMPT_ES2INGA
-    client = _get_client()
-    resp = client.messages.create(
-        model=model,
-        max_tokens=DEFAULT_MAX_TOKENS,
-        system=system,
-        messages=[{"role": "user", "content": prompt}],
-    )
-    return resp.content[0].text.strip()
+    return complete(system, prompt, model=model)

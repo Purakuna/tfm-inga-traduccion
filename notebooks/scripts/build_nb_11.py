@@ -89,14 +89,7 @@ def translate_with_direction(sentence: str, direccion: str, use_rag: bool, top_k
         claude_rag.SYSTEM_PROMPT_INGA2ES if direccion == "inga2es"
         else claude_rag.SYSTEM_PROMPT_ES2INGA
     )
-    client = claude_rag._get_client()
-    resp = client.messages.create(
-        model=claude_rag.DEFAULT_MODEL,
-        max_tokens=claude_rag.DEFAULT_MAX_TOKENS,
-        system=system,
-        messages=[{"role": "user", "content": prompt}],
-    )
-    return resp.content[0].text.strip()
+    return claude_rag.complete(system, prompt)
 '''
 )
 
@@ -153,14 +146,7 @@ def refine_with_lora_seed(original: str, seed: str, direccion: str, top_k: int =
         f"Traduccion automatica preliminar a refinar:\n{seed}\n\n"
         f"Versino refinada:"
     )
-    client = claude_rag._get_client()
-    resp = client.messages.create(
-        model=claude_rag.DEFAULT_MODEL,
-        max_tokens=claude_rag.DEFAULT_MAX_TOKENS,
-        system=SYSTEM_REFINEMENT,
-        messages=[{"role": "user", "content": prompt_E}],
-    )
-    return resp.content[0].text.strip()
+    return claude_rag.complete(SYSTEM_REFINEMENT, prompt_E)
 
 
 PRED_AB = ROOT / "datos" / "predicciones_val_AB.jsonl"
