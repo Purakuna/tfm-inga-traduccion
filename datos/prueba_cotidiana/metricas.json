@@ -1,0 +1,30 @@
+{
+  "_n": 4,
+  "_model": "gemini-3.1-pro-preview",
+  "config_F_wiki_rapido_inga2es": {
+    "bleu": 27.3411,
+    "chrf": 51.6506,
+    "bertscore": 0.8466,
+    "vacias": 0
+  },
+  "config_F_wiki_rapido_es2inga": {
+    "bleu": 4.3453,
+    "chrf": 42.3413,
+    "bertscore": 0.7779,
+    "chrf_ortografia_normalizada": 44.67990277658357,
+    "vacias": 0
+  },
+  "config_G_wiki_agente_inga2es": {
+    "bleu": 26.2083,
+    "chrf": 51.9429,
+    "bertscore": 0.8337,
+    "vacias": 0
+  },
+  "config_G_wiki_agente_es2inga": {
+    "bleu": 3.0644,
+    "chrf": 39.1023,
+    "bertscore": 0.786,
+    "chrf_ortografia_normalizada": 41.938081608537054,
+    "vacias": 0
+  }
+}

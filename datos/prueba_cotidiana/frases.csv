@@ -1,0 +1,32 @@
+﻿id,categoria,situacion_sugerida,texto_inga,texto_es,dialecto,vista_por_wiki,notas
+c01,saludo,Saludar a un mayor por la manana,,,,,
+c02,saludo,Preguntar como amanecio la familia,"Imasata pakaripuangui, Kai puncha allí puncha kachu kamanda y tukuikunamanda","Como amaneces, que este día sea un gran día para ti y para todos",,,"Frase y traduccion de una hablante (grupo familiar, 2026-09-19)."
+c03,saludo,Despedirse hasta el dia siguiente,,,,,
+c04,saludo,Agradecer una visita,,,,,
+c05,familia,Decir cuantos hijos o hermanos tiene alguien,,,,,
+c06,familia,Contar donde vive la abuela,,,,,
+c07,familia,Pedirle a un nino que venga a comer,,,,,
+c08,familia,Decir que el papa salio a trabajar,,,,,
+c09,chagra y comida,Decir que se va a sembrar maiz,,,,,
+c10,chagra y comida,Invitar a tomar chicha o comer algo,,,,,
+c11,chagra y comida,Decir que la comida esta lista,,,,,
+c12,chagra y comida,Hablar de la cosecha de este ano,,,,,
+c13,salud,Decir que a alguien le duele la cabeza o el estomago,,,,,
+c14,salud,Recomendar ir donde el medico tradicional,,,,,
+c15,salud,Preguntar si alguien ya se siente mejor,,,,,
+c16,tiempo y clima,Decir que esta lloviendo mucho,,,,,
+c17,tiempo y clima,Decir que manana hay que madrugar,,,,,
+c18,tiempo y clima,Hablar de algo que paso ayer,,,,,
+c19,camino y lugar,Preguntar de donde viene alguien,,,,,
+c20,camino y lugar,Explicar como llegar a un sitio del pueblo,,,,,
+c21,camino y lugar,Decir que se va a viajar a Mocoa o a Pasto,,,,,
+c22,pregunta,Preguntar cuanto cuesta algo,,,,,
+c23,pregunta,Preguntar que esta haciendo alguien,,,,,
+c24,pregunta,Preguntar si alguien habla inga,,,,,
+c25,comunidad,Avisar que hay reunion del cabildo,,,,,
+c26,comunidad,Invitar a una minga,,,,,
+c27,comunidad,Hablar de una fiesta o celebracion,,,,,
+c28,consejo,Un consejo de los mayores a los jovenes,"Suma kausai, suma iuiai, sugkunata maki kuangapa pudigpi maki kuai, kai kipa atariska wambrakunaua palabra llalichingapa pudigpi rimai, waira sinalla llallinakunchi, mana ianga samunchi.","Viva bien, piensa bien. Si puede dar la mano a otros hazlo, si puede hablar con esta nueva generación hágalo, estamos de paso como el viento, no vinimos a perder el tiempo.",,,Consejo escrito por una hablante; traduccion manuscrita de hablantes (2026-09-19). Infinitivos con sentido imperativo.
+c29,consejo,Un dicho o refran que se use en la comunidad,"Maima nukapa kausai apawankama, wasama kauaspa mana llakispa mana manchaspa kusikuspa.","A donde la vida me lleve, mirando hacia atrás, sin tristeza, sin miedo, feliz.",,,"La version manuscrita decia 'nos lleve'; otra hablante corrigio: esta en singular, 'me lleve'."
+c30,consejo,Aconsejar cuidar la lengua o la tierra,,,,,
+c31,casa,Reclamo y obligacion en la casa,"Imasamandata kaillapi chi man sirvi kunata sakinaku. Kai wasita tuku allichikungapa. Chasa ni pi, ni ima mana ningapa ka","Por qué dejan aquí esas cosas que no sirven. Esta casa toca acomodarla, así nadie dirá nada",,si: de esta frase salio la regla tuku + -ngapa = 'toca' (2026-09-19); no cuenta como prueba limpia de esa regla,Frase y traduccion de una hablante (2026-09-19). 'tuku ...-ngapa' traducido como 'toca ...'.
