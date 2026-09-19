@@ -1,0 +1,68 @@
+{
+  "_model": "gemini-3.1-pro-preview",
+  "_n": 100,
+  "_wiki": {
+    "lemma": 3332,
+    "suffix": 70,
+    "grammar": 50,
+    "convention": 1,
+    "case": 0,
+    "total": 3453
+  },
+  "config_F_wiki_fast_inga2es": {
+    "bleu": 10.8545,
+    "chrf": 35.6058,
+    "bertscore": 0.7607,
+    "latency_mean_s": 6.01,
+    "latency_p50_s": 4.22,
+    "tool_calls_mean": 0.0,
+    "confidence_counts": {
+      "high": 78,
+      "medium": 18,
+      "low": 4
+    },
+    "wall_s_last_run": 108.1
+  },
+  "config_F_wiki_fast_es2inga": {
+    "bleu": 7.7167,
+    "chrf": 35.491,
+    "bertscore": 0.7861,
+    "latency_mean_s": 8.28,
+    "latency_p50_s": 8.91,
+    "tool_calls_mean": 0.0,
+    "confidence_counts": {
+      "medium": 49,
+      "low": 34,
+      "high": 17
+    },
+    "wall_s_last_run": 144.8
+  },
+  "config_G_wiki_agent_inga2es": {
+    "bleu": 10.2005,
+    "chrf": 35.7266,
+    "bertscore": 0.7637,
+    "latency_mean_s": 13.29,
+    "latency_p50_s": 12.32,
+    "tool_calls_mean": 1.62,
+    "confidence_counts": {
+      "high": 89,
+      "medium": 10,
+      "low": 1
+    },
+    "wall_s_last_run": 229.6
+  },
+  "config_G_wiki_agent_es2inga": {
+    "bleu": 9.3847,
+    "chrf": 36.9831,
+    "bertscore": 0.7882,
+    "latency_mean_s": 16.39,
+    "latency_p50_s": 16.32,
+    "tool_calls_mean": 2.67,
+    "confidence_counts": {
+      "medium": 59,
+      "high": 25,
+      "low": 16
+    },
+    "wall_s_last_run": 281.5
+  }
+}
