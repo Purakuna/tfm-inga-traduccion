@@ -32,7 +32,7 @@ const CONF_TONE = { low: 'text-carmin', medium: 'text-oro', high: 'text-forest' 
 
 export default function Traducir() {
   const [direccion, setDireccion] = useStored<Direccion>('inga.direccion', 'inga2es')
-  const [mode, setMode] = useStored<Mode>('inga.modo', 'agent')
+  const [mode, setMode] = useStored<Mode>('inga.modo.v2', 'fast')
   const [text, setText] = useState('')
   const [examples, setExamples] = useState<ExampleSentence[]>([])
   const [history, setHistory] = useState<HistoryEntry[]>(() => readJson<HistoryEntry[]>(HISTORY_KEY, []))
